@@ -7,7 +7,7 @@
 ## Team Members and Roles
 
 - Cayaos Benny Boy T. — 
-- Nicole Kimberly Luzon — 
+- Nicole Kimberly Luzon — Documentation
 - Ken Aaron S. Macalalad — 
 - Mikaella Joy Delos Angeles — 
 
