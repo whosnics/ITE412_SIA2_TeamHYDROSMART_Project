@@ -6,7 +6,7 @@
 
 ## Team Members and Roles
 
-- Cayaos Benny Boy T. — 
+- Cayaos Benny Boy T. — Project Lead
 - Nicole Kimberly Luzon — 
 - Ken Aaron S. Macalalad — 
 - Mikaella Joy Delos Angeles — 
