@@ -9,7 +9,7 @@
 - Cayaos Benny Boy T. — Project Lead
 - Nicole Kimberly Luzon — Documenter
 - Ken Aaron S. Macalalad — Diagram designer
-- Mikaella Joy Delos Angeles — 
+- Mikaella Joy Delos Angeles — Presenter
 
 ## Project Summary
 
