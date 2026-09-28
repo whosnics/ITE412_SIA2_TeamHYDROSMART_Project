@@ -1,0 +1,172 @@
+{
+  "info": {
+    "_postman_id": "hydrosmart-rest-api-collection",
+    "name": "HYDROSMART REST API",
+    "description": "Postman collection for testing the Sensor Readings and Irrigation Control modules of HYDROSMART.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Sensor Readings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/sensors",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["sensors"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is an array\", function () {",
+              "    const data = pm.response.json();",
+              "    pm.expect(data).to.be.an(\"array\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Add Sensor Reading",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sensorName\": \"Soil Moisture Sensor 3\",\n  \"moistureLevel\": 24,\n  \"temperature\": 31,\n  \"status\": \"Dry\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/sensors",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["sensors"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"New sensor reading has an ID\", function () {",
+              "    const data = pm.response.json();",
+              "    pm.expect(data).to.have.property(\"id\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Irrigation Records",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/irrigation",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["irrigation"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is an array\", function () {",
+              "    const data = pm.response.json();",
+              "    pm.expect(data).to.be.an(\"array\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Add Irrigation Command",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"zone\": \"Zone C\",\n  \"pumpStatus\": \"ON\",\n  \"duration\": 20,\n  \"mode\": \"Automatic\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/irrigation",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["irrigation"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"New irrigation command has an ID\", function () {",
+              "    const data = pm.response.json();",
+              "    pm.expect(data).to.have.property(\"id\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
