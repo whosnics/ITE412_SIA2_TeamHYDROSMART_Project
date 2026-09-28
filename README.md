@@ -7,9 +7,9 @@
 ## Team Members and Roles
 
 - Cayaos Benny Boy T. — Project Lead
-- Nicole Kimberly Luzon — 
-- Ken Aaron S. Macalalad — 
-- Mikaella Joy Delos Angeles — 
+- Nicole Kimberly Luzon — Documentation
+- Ken Aaron S. Macalalad — Diagram Designer
+- Mikaella Joy Delos Angeles — Presenter
 
 ## Project Summary
 
