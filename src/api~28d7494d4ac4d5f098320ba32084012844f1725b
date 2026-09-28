@@ -1,0 +1,74 @@
+
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware to parse incoming JSON payloads
+app.use(express.json());
+
+// In-memory data stores
+let borrowers = [
+  { id: 1, name: "Juan Dela Cruz", email: "juan@email.com" }
+];
+
+let loans = [
+  { id: 1, borrowerId: 1, amount: 5000, status: "active" }
+];
+
+// ==========================================
+// MODULE 1: BORROWERS ENDPOINTS
+// ==========================================
+
+// GET /borrowers - Retrieve all borrowers
+app.get('/borrowers', (req, res) => {
+  res.status(200).json(borrowers);
+});
+
+// POST /borrowers - Add a new borrower
+app.post('/borrowers', (req, res) => {
+  const { name, email } = req.body;
+  if (!name || !email) {
+    return res.status(400).json({ error: "Name and email are required." });
+  }
+
+  const newBorrower = {
+    id: borrowers.length > 0 ? borrowers[borrowers.length - 1].id + 1 : 1,
+    name,
+    email
+  };
+
+  borrowers.push(newBorrower);
+  res.status(201).json(newBorrower);
+});
+
+// ==========================================
+// MODULE 2: LOANS ENDPOINTS
+// ==========================================
+
+// GET /loans - Retrieve all loans
+app.get('/loans', (req, res) => {
+  res.status(200).json(loans);
+});
+
+// POST /loans - Add a new loan
+app.post('/loans', (req, res) => {
+  const { borrowerId, amount, status } = req.body;
+  if (!borrowerId || !amount) {
+    return res.status(400).json({ error: "Borrower ID and amount are required." });
+  }
+
+  const newLoan = {
+    id: loans.length > 0 ? loans[loans.length - 1].id + 1 : 1,
+    borrowerId: Number(borrowerId),
+    amount: Number(amount),
+    status: status || "active"
+  };
+
+  loans.push(newLoan);
+  res.status(201).json(newLoan);
+});
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
