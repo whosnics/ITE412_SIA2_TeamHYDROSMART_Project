@@ -142,3 +142,13 @@ The HYDROSMART data flow begins with the sensors connected to the ESP32. The pH,
 The sensor data is stored and synchronized using Firebase Realtime Database. The Laravel web application retrieves the available data and displays it through the monitoring dashboard. The dashboard presents current readings, alerts, system status, and historical information to authorized users.
 
 When an authorized operator needs to control a dosing pump, the operator selects the appropriate pump through the web application. The control command is transmitted to the ESP32. The ESP32 controls the corresponding relay and dosing pump. The pump status is then recorded for system monitoring.
+
+## 6. Messaging Workflow
+
+HYDROSMART uses a producer-consumer messaging workflow to support asynchronous communication between system modules.
+
+The Monitoring and Data Management Module acts as the producer. Whenever sensor readings are received from the ESP32, the module sends monitoring events to a message queue.
+
+The Alert and Notification Module acts as the consumer. It retrieves messages from the queue and evaluates whether the sensor readings exceed predefined thresholds. If an abnormal value is detected, the system generates a notification for the operator.
+
+Using message-oriented middleware allows sensor monitoring and alert processing to operate independently, improving scalability, reliability, and system integration.
